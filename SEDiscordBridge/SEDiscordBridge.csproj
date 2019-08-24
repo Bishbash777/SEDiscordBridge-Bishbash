@@ -8,13 +8,12 @@
     <OutputType>library</OutputType>
     <RootNamespace>SEDiscordBridge</RootNamespace>
     <AssemblyName>SEDiscordBridge</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,35 +49,25 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DSharpPlus">
-      <HintPath>..\..\Server\torch-server\DSharpPlus.dll</HintPath>
+    <Reference Include="DSharpPlus, Version=3.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DSharpPlus.3.2.3\lib\net46\DSharpPlus.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\..\Server\torch-server\NLog.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Downloads\torch-server (2)\NLog.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sandbox.Common">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\Sandbox.Common.dll</HintPath>
+      <HintPath>..\GameBinaries\Sandbox.Common.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sandbox.Game">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\Sandbox.Game.dll</HintPath>
-    </Reference>
-    <Reference Include="Sandbox.Game.XmlSerializers">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\Sandbox.Game.XmlSerializers.dll</HintPath>
-    </Reference>
-    <Reference Include="Sandbox.Graphics">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\Sandbox.Graphics.dll</HintPath>
-    </Reference>
-    <Reference Include="Sandbox.RenderDirect">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\Sandbox.RenderDirect.dll</HintPath>
-    </Reference>
-    <Reference Include="SpaceEngineers.Game">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\SpaceEngineers.Game.dll</HintPath>
-    </Reference>
-    <Reference Include="SpaceEngineers.ObjectBuilders">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\SpaceEngineers.ObjectBuilders.dll</HintPath>
-    </Reference>
-    <Reference Include="SpaceEngineers.ObjectBuilders.XmlSerializers">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\SpaceEngineers.ObjectBuilders.XmlSerializers.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\torch-server (2)\DedicatedServer64\Sandbox.Game.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
@@ -124,76 +113,36 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Torch">
-      <HintPath>..\..\Server\torch-server\Torch.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\torch-server (2)\Torch.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Torch.API">
-      <HintPath>..\..\Server\torch-server\Torch.API.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\torch-server (2)\Torch.API.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Torch.Server">
-      <HintPath>..\..\Server\torch-server\Torch.Server.exe</HintPath>
+      <HintPath>..\..\..\..\Downloads\torch-server (2)\Torch.Server.exe</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VRage">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.dll</HintPath>
-    </Reference>
-    <Reference Include="VRage.Ansel">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.Ansel.dll</HintPath>
-    </Reference>
-    <Reference Include="VRage.Audio">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.Audio.dll</HintPath>
-    </Reference>
-    <Reference Include="VRage.Dedicated">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.Dedicated.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\torch-server (2)\DedicatedServer64\VRage.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VRage.Game">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.Game.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\torch-server (2)\DedicatedServer64\VRage.Game.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="VRage.Game.XmlSerializers">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.Game.XmlSerializers.dll</HintPath>
-    </Reference>
-    <Reference Include="VRage.Input">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.Input.dll</HintPath>
+    <Reference Include="VRage.Input, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\torch-server (2)\DedicatedServer64\VRage.Input.dll</HintPath>
     </Reference>
     <Reference Include="VRage.Library">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.Library.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\torch-server (2)\DedicatedServer64\VRage.Library.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="VRage.Math">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.Math.dll</HintPath>
-    </Reference>
-    <Reference Include="VRage.Math.XmlSerializers">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.Math.XmlSerializers.dll</HintPath>
-    </Reference>
-    <Reference Include="VRage.NativeAftermath">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.NativeAftermath.dll</HintPath>
-    </Reference>
-    <Reference Include="VRage.NativeWrapper">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.NativeWrapper.dll</HintPath>
-    </Reference>
-    <Reference Include="VRage.Network">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.Network.dll</HintPath>
-    </Reference>
-    <Reference Include="VRage.Platform.Windows">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.Platform.Windows.dll</HintPath>
-    </Reference>
-    <Reference Include="VRage.RemoteClient.Core">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.RemoteClient.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="VRage.Render">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.Render.dll</HintPath>
-    </Reference>
-    <Reference Include="VRage.Render11">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.Render11.dll</HintPath>
-    </Reference>
-    <Reference Include="VRage.Scripting">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.Scripting.dll</HintPath>
-    </Reference>
-    <Reference Include="VRage.Steam">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.Steam.dll</HintPath>
-    </Reference>
-    <Reference Include="VRage.UserInterface">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.UserInterface.dll</HintPath>
-    </Reference>
-    <Reference Include="VRage.XmlSerializers">
-      <HintPath>..\..\Server\torch-server\DedicatedServer64\VRage.XmlSerializers.dll</HintPath>
+    <Reference Include="VRage.Math, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\torch-server (2)\DedicatedServer64\VRage.Math.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase">
       <Private>False</Private>
@@ -246,6 +195,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="manifest.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
