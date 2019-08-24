@@ -78,7 +78,7 @@ namespace SEDiscordBridge
             }            
         }
 
-        public void SendChatMessage(string user, string msg)
+        public void SendChatMessage(string user, string msg, bool console)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace SEDiscordBridge
                 {
                     DiscordChannel chann = discord.GetChannelAsync(ulong.Parse(Plugin.Config.ChatChannelId)).Result;
                     //mention
-                    msg = MentionNameToID(msg, chann);
+                    msg = MentionNameToID(msg, chann, console);
 
                     if (user != null)
                     {
@@ -104,7 +104,7 @@ namespace SEDiscordBridge
             }
         }
 
-        public void SendFacChatMessage(string user, string msg, string facName)
+        public void SendFacChatMessage(string user, string msg, string facName, bool console)
         {
             IEnumerable<string> channelIds = Plugin.Config.FactionChannels.Where(c => c.Split(':')[0].Equals(facName));
             if (Ready && channelIds.Count() > 0)
@@ -113,7 +113,7 @@ namespace SEDiscordBridge
                 {
                     DiscordChannel chann = discord.GetChannelAsync(ulong.Parse(chId.Split(':')[1])).Result;
                     //mention
-                    msg = MentionNameToID(msg, chann);
+                    msg = MentionNameToID(msg, chann, console);
 
                     if (user != null)
                     {
@@ -256,7 +256,7 @@ namespace SEDiscordBridge
                 Task.Delay(Plugin.Config.RemoveResponse*1000).ContinueWith(t => dms?.DeleteAsync());
         }
 
-        private string MentionNameToID(string msg, DiscordChannel chann)
+        private string MentionNameToID(string msg, DiscordChannel chann, bool console)
         {
             try
             {
@@ -275,32 +275,35 @@ namespace SEDiscordBridge
                                 continue;
                             }
 
-                            //try
-                            //{
-                            //    var members = chann.Guild.GetAllMembersAsync().Result;
+                            if (!console)
+                            {
+                                try
+                                {
+                                    var members = chann.Guild.GetAllMembersAsync().Result;
 
-                            //    if (!Plugin.Config.MentOthers)
-                            //    {
-                            //        continue;
-                            //    }
-                            //    var memberByNickname = members.FirstOrDefault((u) => String.Compare(u.Nickname, name, true) == 0);
-                            //    if (memberByNickname != null)
-                            //    {
-                            //        msg = msg.Replace(part, $"<@{memberByNickname.Id}>");
-                            //        continue;
-                            //    }
-                            //    var memberByUsername = members.FirstOrDefault((u) => String.Compare(u.Username, name, true) == 0);
-                            //    if (memberByUsername != null)
-                            //    {
-                            //        msg = msg.Replace(part, $"<@{memberByUsername.Id}>");
-                            //        continue;
-                            //    }
-                            //}
-                            //catch (Exception)
-                            //{
-                            //    SEDiscordBridgePlugin.Log.Warn("Error on convert a member id to name on mention other players.");
-                            //    continue;
-                            //}
+                                    if (!Plugin.Config.MentOthers)
+                                    {
+                                        continue;
+                                    }
+                                    var memberByNickname = members.FirstOrDefault((u) => String.Compare(u.Nickname, name, true) == 0);
+                                    if (memberByNickname != null)
+                                    {
+                                        msg = msg.Replace(part, $"<@{memberByNickname.Id}>");
+                                        continue;
+                                    }
+                                    var memberByUsername = members.FirstOrDefault((u) => String.Compare(u.Username, name, true) == 0);
+                                    if (memberByUsername != null)
+                                    {
+                                        msg = msg.Replace(part, $"<@{memberByUsername.Id}>");
+                                        continue;
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    SEDiscordBridgePlugin.Log.Warn("Error on convert a member id to name on mention other players.");
+                                    continue;
+                                }
+                            }
                         }
 
                         var emojis = chann.Guild.Emojis;
