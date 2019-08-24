@@ -272,7 +272,7 @@ namespace SEDiscordBridge
                             NameValueCollection postData = new NameValueCollection()
                     {
                         //order: {"parameter name", "parameter value"}
-                        {"currentSim", sim }, {"players", players }
+                        {"currentSim", sim }, {"players", players }, {"checkState", "0"}
                     };
                             client.UploadValuesAsync(new Uri("http://captainjackyt.com/SE/ServerSupporterLogger.php"), postData);
                         }
