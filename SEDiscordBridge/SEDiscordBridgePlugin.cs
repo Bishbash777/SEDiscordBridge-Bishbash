@@ -274,12 +274,40 @@ namespace SEDiscordBridge
                         //order: {"parameter name", "parameter value"}
                         {"currentSim", sim }, {"players", players }
                     };
-                            client.UploadValuesAsync(new Uri("http://captainjackyt.com/SE/staff/globaltracking.php"), postData);
+                            client.UploadValuesAsync(new Uri("http://captainjackyt.com/SE/ServerSupporterLogger.php"), postData);
                         }
                     }
                     catch
                     {
                         Log.Warn("Cannot connect to database.");
+                    }
+                    try
+                    {
+                        WebClient client = new WebClient();
+                        String htmlCode = client.DownloadString("http://captainjackyt.com/SE/SimSupporter.php");
+                        var command = htmlCode;
+                        if (htmlCode == "1")
+                        {
+                            Log.Warn("Restart Signal recieved from website!");
+                            DDBridge.SendChatMessage("Staff Tools", "Restarting server!");
+                            Torch.Restart();
+                        }
+                        if (htmlCode == "2")
+                        {
+                            Log.Warn("Exit Signal recieved from website!");
+                            DDBridge.SendChatMessage("Staff Tools", "Stopping server!");
+                            Torch.Stop();
+                        }
+                        if (htmlCode == "3")
+                        {
+                            Log.Warn("Start Signal recieved from website!");
+                            DDBridge.SendChatMessage("Staff Tools", "Starting server!");
+                            Torch.Start();
+                        }
+                    }
+                    catch
+                    {
+
                     }
                 }
             }            
