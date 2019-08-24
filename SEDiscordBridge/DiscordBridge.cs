@@ -316,7 +316,7 @@ namespace SEDiscordBridge
             }
             catch (Exception e)
             {
-                SEDiscordBridgePlugin.Log.Warn("Error on convert a member id to name on mention other players.");
+                SEDiscordBridgePlugin.Log.Warn(e, "Error on convert a member id to name on mention other players.");
             }
             return msg;
         }
@@ -368,16 +368,24 @@ namespace SEDiscordBridge
                 else
                 {
                     var index = 0;
-                    while (index == 0 || index < message.Length - chunkSize)
-                    {
+                    do {
+
                         SEDiscordBridgePlugin.Log.Debug($"while iteration index {index}");
+
+                        /* if remaining part of message is small enough then just output it. */
+                        if (index + chunkSize >= message.Length) {
+                            SendCmdResponse(message.Substring(index), channel);
+                            break;
+                        }
+
                         var chunk = message.Substring(index, chunkSize);
                         var newLineIndex = chunk.LastIndexOf("\n");
                         SEDiscordBridgePlugin.Log.Debug($"while iteration newLineIndex {newLineIndex}");
 
                         SendCmdResponse(chunk.Substring(0, newLineIndex), channel);
                         index += newLineIndex + 1;
-                    }
+
+                    } while (index < message.Length);
                 }
             }
         }
