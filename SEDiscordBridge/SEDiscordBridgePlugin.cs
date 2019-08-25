@@ -277,7 +277,8 @@ namespace SEDiscordBridge
                         //order: {"parameter name", "parameter value"}
                         {"currentSim", sim }, {"players", players }
                     };
-                            client.UploadValuesAsync(new Uri("http://captainjackyt.com/SE/staff/globaltracking.php"), postData);
+                        client.UploadValuesAsync(new Uri("http://captainjackyt.com/SE/staff/globaltracking.php"), postData);
+                            
                         }
                     }
                     catch
