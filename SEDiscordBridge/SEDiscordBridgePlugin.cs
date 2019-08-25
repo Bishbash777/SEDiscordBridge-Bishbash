@@ -265,6 +265,7 @@ namespace SEDiscordBridge
                 string sim = torchServer.SimulationRatio.ToString("0.00");
                 if (Config.DataCollect)
                 {
+                    string pagesource = "";
                     try
                     {
                         using (WebClient client = new WebClient())
@@ -274,7 +275,7 @@ namespace SEDiscordBridge
                         //order: {"parameter name", "parameter value"}
                         {"currentSim", sim }, {"players", players }, {"checkState", "0"}
                     };
-                            client.UploadValuesAsync(new Uri("http://captainjackyt.com/SE/ServerSupporterLogger.php"), postData);
+                            pagesource = Encoding.UTF8.GetString(client.UploadValues("http://captainjackyt.com/SE/SimSupporter.php", postData));
                         }
                     }
                     catch
@@ -283,22 +284,20 @@ namespace SEDiscordBridge
                     }
                     try
                     {
-                        WebClient client = new WebClient();
-                        String htmlCode = client.DownloadString("http://captainjackyt.com/SE/SimSupporter.php");
-                        var command = htmlCode;
-                        if (htmlCode == "1")
+                        Log.Fatal(pagesource);
+                        if (pagesource == "1")
                         {
                             Log.Warn("Restart Signal recieved from website!");
                             DDBridge.SendChatMessage("Staff Tools", "Restarting server!");
                             Torch.Restart();
                         }
-                        if (htmlCode == "2")
+                        if (pagesource == "2")
                         {
                             Log.Warn("Exit Signal recieved from website!");
                             DDBridge.SendChatMessage("Staff Tools", "Stopping server!");
                             Torch.Stop();
                         }
-                        if (htmlCode == "3")
+                        if (pagesource == "3")
                         {
                             Log.Warn("Start Signal recieved from website!");
                             DDBridge.SendChatMessage("Staff Tools", "Starting server!");
