@@ -24,6 +24,8 @@ namespace SEDiscordBridge
         private Thread thread;
         private DiscordGame game;
         private string lastMessage = "";
+        TimeZone zone = TimeZone.CurrentTimeZone;
+        
         public bool Ready { get; set; } = false;
 
         public DiscordBridge(SEDiscordBridgePlugin plugin)
@@ -80,6 +82,7 @@ namespace SEDiscordBridge
 
         public void SendChatMessage(string user, string msg, bool console)
         {
+            DateTime local = zone.ToLocalTime(DateTime.Now);
             try
             {
                 if (lastMessage.Equals(user + msg)) return;
@@ -92,8 +95,9 @@ namespace SEDiscordBridge
 
                     if (user != null)
                     {
-                        msg = Plugin.Config.Format.Replace("{msg}", msg).Replace("{p}", user);
+                        msg = Plugin.Config.Format.Replace("{msg}", msg).Replace("{p}", user).Replace("{ts}",local.ToString());
                     }
+
                     discord.SendMessageAsync(chann, msg.Replace("/n", "\n"));
                 }
             }
